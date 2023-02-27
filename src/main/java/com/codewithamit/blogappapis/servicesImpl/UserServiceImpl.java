@@ -22,12 +22,16 @@ public class UserServiceImpl implements UserService {
   @Autowired
   private ModelMapper modelMapper;
 
+  // create user
+
   @Override
   public UserDto createUser(UserDto userDto) {
     User user = this.dtoToUser(userDto);
     User savedUser = this.userRepo.save(user);
     return this.userToDto(savedUser);
   }
+
+  // update user
 
   @Override
   public UserDto updateUser(UserDto userDto, Integer userId) {
@@ -45,12 +49,16 @@ public class UserServiceImpl implements UserService {
     return userDto1;
   }
 
+  // get user by id
+
   @Override
   public UserDto getUserById(Integer userId) {
 
     User user = this.userRepo.findById(userId).orElseThrow( () -> new RecourceNotFoundException("User", "Id", userId));
     return this.userToDto(user);
   }
+
+  // get all users
 
   @Override
   public List<UserDto> getAllUsers() {
@@ -60,6 +68,8 @@ public class UserServiceImpl implements UserService {
     return userDtos;
   }
 
+  // delete user
+  
   @Override
   public Void deleteUser(Integer userId) {
 
