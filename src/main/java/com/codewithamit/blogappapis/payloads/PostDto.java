@@ -11,6 +11,8 @@ import jakarta.validation.constraints.Size;
 
 public class PostDto {
 
+    private int postId;
+    
     @NotEmpty
     @Size(min = 4 ,message = "Title must be min of 4 characters !")
     private String title;
@@ -19,7 +21,7 @@ public class PostDto {
     @Size(min = 10 ,message = "Content must be min of 4 characters !")
     private String content;
 
-    //@NotEmpty
+    @NotEmpty
     private String imageName;
 
     private Date addedDate;
