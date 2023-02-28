@@ -6,9 +6,12 @@ import com.codewithamit.blogappapis.config.AppConstants;
 import com.codewithamit.blogappapis.payloads.ApiResponse;
 import com.codewithamit.blogappapis.payloads.PostDto;
 import com.codewithamit.blogappapis.payloads.PostResponse;
+import com.codewithamit.blogappapis.payloads.ImageResponse;
+import com.codewithamit.blogappapis.services.FileService;
 import com.codewithamit.blogappapis.services.PostService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -19,7 +22,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 @RestController
@@ -28,6 +31,12 @@ public class PostController {
 
     @Autowired
     private PostService postService;
+
+    @Autowired
+    private FileService fileService;
+
+    @Value("${project.image}")
+    private String path;
 
     // create
     @PostMapping("/user/{userId}/category/{categoryId}/posts")
@@ -92,10 +101,18 @@ public class PostController {
     // search post
     @GetMapping("/posts/search/{keywords}")
     public ResponseEntity <List<PostDto>> searchPostByTitle(
-        @PathVariable ("keywords") String keywords
+        @Valid @PathVariable ("keywords") String keywords
     ){
         List<PostDto> result = this.postService.searchPosts(keywords);
         return new ResponseEntity<List<PostDto>>(result,HttpStatus.OK);
+    }
+
+    //post image upload
+    @PostMapping("/post/image/upload{postId}")
+    public ResponseEntity <ImageResponse> uploadPostImage(
+        @RequestParam("image") MultipartFile image){
+        String fileName = this.fileService.uploadImage(path, image);
+        
     }
 
 }
