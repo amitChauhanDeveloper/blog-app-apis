@@ -6,14 +6,19 @@ import com.codewithamit.blogappapis.payloads.UserDto;
 
 public interface UserService {
 
+    //create
     UserDto createUser(UserDto user);
 
+    //update
     UserDto updateUser(UserDto userDto, Integer userId);
 
+    //get single user
     UserDto getUserById(Integer userId);
 
+    //get all users
     List<UserDto> getAllUsers();
 
+    //delete
     Void deleteUser(Integer userId);
 
 }
