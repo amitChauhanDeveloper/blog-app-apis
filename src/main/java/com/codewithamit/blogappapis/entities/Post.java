@@ -45,8 +45,8 @@ public class Post {
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
     private List<Comment> comments = new ArrayList<>();
 
-    @ManyToOne(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<User> users = new ArrayList<>();
+    /* @ManyToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<User> users = new ArrayList<>(); */
 
 
 }

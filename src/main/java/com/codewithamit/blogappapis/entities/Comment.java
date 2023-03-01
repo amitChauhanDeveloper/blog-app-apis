@@ -29,7 +29,5 @@ public class Comment {
     @ManyToOne
     private User user;
 
-   
-
     
 }
