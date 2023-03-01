@@ -9,9 +9,11 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.UUID;
 
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import com.codewithamit.blogappapis.services.FileService;
 
+@Service
 public class FileServiceImpl implements FileService{
 
     @Override
@@ -32,6 +34,7 @@ public class FileServiceImpl implements FileService{
 
         //random name generate file
         String randomID = UUID.randomUUID().toString();
+        //String fileName1 = randomID.concat(name.substring(name.lastIndexOf(".")));
         String fileName1 = randomID.concat(name.substring(name.lastIndexOf(".")));
 
         //Fullpath

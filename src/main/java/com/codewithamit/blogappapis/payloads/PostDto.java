@@ -2,9 +2,12 @@ package com.codewithamit.blogappapis.payloads;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
 import java.util.Date;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -27,5 +30,7 @@ public class PostDto {
     private Date addedDate;
     private CategoryDto category;
     private UserDto user;
+
+    private List<CommentDto> comments = new ArrayList<>();
     
 }
