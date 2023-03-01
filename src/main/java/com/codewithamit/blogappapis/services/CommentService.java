@@ -6,7 +6,9 @@ public interface CommentService {
     
     //create comment
 
-    CommentDto createComment (CommentDto commentDto, Integer postId);
+    CommentDto createComment (CommentDto commentDto, Integer postId, Integer userId);
+
+    
 
     //delete comment
     void deleteComment(Integer commentId);

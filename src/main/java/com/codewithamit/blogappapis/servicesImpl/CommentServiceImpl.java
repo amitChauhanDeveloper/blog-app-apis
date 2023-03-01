@@ -5,12 +5,14 @@ import org.springframework.stereotype.Service;
 import com.codewithamit.blogappapis.payloads.CommentDto;
 import com.codewithamit.blogappapis.repositories.PostRepo;
 import com.codewithamit.blogappapis.repositories.CommentRepo;
+import com.codewithamit.blogappapis.repositories.UserRepo;
 import com.codewithamit.blogappapis.services.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.codewithamit.blogappapis.entities.Post;
 import com.codewithamit.blogappapis.exceptions.RecourceNotFoundException;
 import org.modelmapper.ModelMapper;
 import com.codewithamit.blogappapis.entities.Comment;
+import com.codewithamit.blogappapis.entities.User;
 
 @Service
 public class CommentServiceImpl implements CommentService {
@@ -22,15 +24,22 @@ public class CommentServiceImpl implements CommentService {
     private CommentRepo commentRepo;
 
     @Autowired
+    private UserRepo userRepo;
+
+    @Autowired
     private ModelMapper modelMapper;
 
     //create comment
     @Override
-    public CommentDto createComment(CommentDto commentDto, Integer postId) {
+    public CommentDto createComment(CommentDto commentDto, Integer postId, Integer userId) {
         Post post = this.postRepo.findById(postId)
                 .orElseThrow(() -> new RecourceNotFoundException("Post", "Post id", postId));
-        Comment comment = this.modelMapper.map(commentDto, Comment.class);
+        User user = this.userRepo.findById(userId)
+                .orElseThrow(() -> new RecourceNotFoundException("User", "User id", userId));
+
+            Comment comment = this.modelMapper.map(commentDto, Comment.class);
         comment.setPost(post);
+        comment.setUser(user);
         Comment savedComment = this.commentRepo.save(comment);
         return this.modelMapper.map(savedComment, CommentDto.class);
     }
@@ -38,9 +47,9 @@ public class CommentServiceImpl implements CommentService {
     //delete comment
     @Override
     public void deleteComment(Integer commentId) {
-        Comment com = this.commentRepo.findById(commentId)
+        Comment comment = this.commentRepo.findById(commentId)
                 .orElseThrow(() -> new RecourceNotFoundException("Comment", "Comment id", commentId));
-        this.commentRepo.delete(com);
+        this.commentRepo.delete(comment);
     }
 
 }

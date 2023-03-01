@@ -24,10 +24,11 @@ public class CommentController {
     private CommentService commentService;
 
     // create comment
-    @PostMapping("/post/{postId}/comments")
+    @PostMapping("/post/{postId}/user/{userId}/comments")
     public ResponseEntity<CommentDto> createComment(@Valid @RequestBody CommentDto commentDto,
-            @PathVariable Integer postId) {
-        CommentDto createComment = this.commentService.createComment(commentDto, postId);
+            @PathVariable Integer postId,
+            @PathVariable Integer userId) {
+        CommentDto createComment = this.commentService.createComment(commentDto, postId, userId);
         return new ResponseEntity<CommentDto>(createComment, HttpStatus.CREATED);
     }
 
