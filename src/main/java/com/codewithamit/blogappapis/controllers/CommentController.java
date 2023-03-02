@@ -3,6 +3,7 @@ package com.codewithamit.blogappapis.controllers;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,6 +31,15 @@ public class CommentController {
             @PathVariable Integer userId) {
         CommentDto createComment = this.commentService.createComment(commentDto, postId,userId);
         return new ResponseEntity<CommentDto>(createComment, HttpStatus.CREATED);
+    }
+
+    // update comment
+    @PutMapping("/comments/{commentId}")
+    public ResponseEntity<CommentDto> updateComment(@Valid @RequestBody CommentDto commentDto,
+            @PathVariable Integer commentId) {
+        CommentDto updatedComment = this.commentService.updateComment(commentDto, commentId);
+        return ResponseEntity.ok(updatedComment);
+
     }
 
     // delete comment

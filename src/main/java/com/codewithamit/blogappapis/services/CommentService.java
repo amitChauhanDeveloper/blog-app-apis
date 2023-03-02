@@ -8,7 +8,8 @@ public interface CommentService {
 
     CommentDto createComment (CommentDto commentDto, Integer postId, Integer userId);
 
-    //CommentDto createComment (CommentDto commentDto, Integer postId);
+    //update comment
+    CommentDto updateComment(CommentDto commentDto,Integer commentId);
     
 
     //delete comment

@@ -29,7 +29,7 @@ public class CommentServiceImpl implements CommentService {
     @Autowired
     private ModelMapper modelMapper;
 
-    //create comment
+    // create comment
     @Override
     public CommentDto createComment(CommentDto commentDto, Integer postId, Integer userId) {
         Post post = this.postRepo.findById(postId)
@@ -37,14 +37,26 @@ public class CommentServiceImpl implements CommentService {
         User user = this.userRepo.findById(userId)
                 .orElseThrow(() -> new RecourceNotFoundException("User", "User id", userId));
 
-            Comment comment = this.modelMapper.map(commentDto, Comment.class);
+        Comment comment = this.modelMapper.map(commentDto, Comment.class);
         comment.setPost(post);
         comment.setUser(user);
         Comment savedComment = this.commentRepo.save(comment);
         return this.modelMapper.map(savedComment, CommentDto.class);
     }
 
-    //delete comment
+    // update comment
+    @Override
+    public CommentDto updateComment(CommentDto commentDto,Integer commentId) {
+        Comment comment = this.commentRepo.findById(commentId)
+                .orElseThrow(() -> new RecourceNotFoundException("Comment", "Comment id", commentId));
+        
+        comment.setContent(commentDto.getContent());
+
+        Comment updatedComment = this.commentRepo.save(comment);
+        return this.modelMapper.map(updatedComment, CommentDto.class);
+    }
+
+    // delete comment
     @Override
     public void deleteComment(Integer commentId) {
         Comment comment = this.commentRepo.findById(commentId)
