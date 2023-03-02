@@ -32,6 +32,5 @@ public class PostDto {
     private UserDto user;
 
     private List<CommentDto> comments = new ArrayList<>();
-    private List<UserDto> users = new ArrayList<>();
     
 }

@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import com.codewithamit.blogappapis.payloads.CommentDto;
 import com.codewithamit.blogappapis.repositories.PostRepo;
 import com.codewithamit.blogappapis.repositories.CommentRepo;
-import com.codewithamit.blogappapis.repositories.UserRepo;
 import com.codewithamit.blogappapis.services.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.codewithamit.blogappapis.entities.Post;
@@ -13,6 +12,7 @@ import com.codewithamit.blogappapis.exceptions.RecourceNotFoundException;
 import org.modelmapper.ModelMapper;
 import com.codewithamit.blogappapis.entities.Comment;
 import com.codewithamit.blogappapis.entities.User;
+import com.codewithamit.blogappapis.repositories.UserRepo;
 
 @Service
 public class CommentServiceImpl implements CommentService {

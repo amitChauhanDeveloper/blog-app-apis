@@ -24,10 +24,10 @@ public class Comment {
     private String content;
 
     @ManyToOne
-    private Post post;
+    private Post post; 
 
     @ManyToOne
-    private User user;
-
+    private User user; 
+ 
     
 }

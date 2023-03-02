@@ -3,6 +3,7 @@ package com.codewithamit.blogappapis.entities;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -42,11 +43,9 @@ public class Post {
     @ManyToOne
     private User user;
 
+
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
     private List<Comment> comments = new ArrayList<>();
-
-    /* @ManyToOne(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<User> users = new ArrayList<>(); */
 
 
 }
