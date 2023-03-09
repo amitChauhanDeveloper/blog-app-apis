@@ -32,7 +32,7 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<JwtAuthResponse> createToken(
-            @RequestBody JwtAuthRequest request) {
+            @RequestBody JwtAuthRequest request) throws Exception {
         this.authenticate(request.getUsername(), request.getPassword());
         UserDetails userDetails = this.userDetailsService.loadUserByUsername(request.getUsername());
         String token = this.jwtTokenHelper.generateToken(userDetails);
@@ -42,17 +42,17 @@ public class AuthController {
         return new ResponseEntity<JwtAuthResponse>(response, HttpStatus.OK);
     }
 
-    private void authenticate(String username, String password) {
+    private void authenticate(String username, String password) throws Exception {
 
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(username,
                 password);
-                try{
-                    this.authenticationManager.authenticate(authenticationToken);
-                }catch(BadCredentialsException e){
-                    System.out.println("Invalid Details..");
+        try {
+            this.authenticationManager.authenticate(authenticationToken);
+        } catch (BadCredentialsException e) {
+            System.out.println("Invalid Details..");
+            throw new Exception("Invalid username on password ?");
+        }
 
-                }
-        
     }
 
 }
