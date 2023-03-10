@@ -1,4 +1,4 @@
-package com.codewithamit.blogappapis.security;
+/*package com.codewithamit.blogappapis.security;
 
 import java.io.IOException;
 
@@ -34,7 +34,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         String requestToken = request.getHeader("Authorization");
 
-        // Bearer 2352523sdgsg
+        // Bearer 
 
         System.out.println(requestToken);
 
@@ -42,7 +42,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         String token = null;
 
-        if (requestToken != null && requestToken.startsWith(token)) {
+        if (requestToken != null && requestToken.startsWith("Bearer")) {
 
             token = requestToken.substring(7);
             try {
@@ -80,4 +80,4 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     }
 
-}
+}*/

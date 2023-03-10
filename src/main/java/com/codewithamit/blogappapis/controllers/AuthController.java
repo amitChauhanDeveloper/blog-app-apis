@@ -3,25 +3,24 @@ package com.codewithamit.blogappapis.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import com.codewithamit.blogappapis.payloads.UserDto;
+import com.codewithamit.blogappapis.services.UserService;
 
-import com.codewithamit.blogappapis.payloads.JwtAuthRequest;
-import com.codewithamit.blogappapis.payloads.JwtAuthResponse;
-import com.codewithamit.blogappapis.security.JwtTokenHelper;
+import jakarta.validation.Valid;
+
 
 @RestController
 @RequestMapping("/api/v1/auth/")
 public class AuthController {
 
     @Autowired
+    private UserService userService;
+
+    /* @Autowired
     private JwtTokenHelper jwtTokenHelper;
 
     @Autowired
@@ -50,9 +49,16 @@ public class AuthController {
             this.authenticationManager.authenticate(authenticationToken);
         } catch (BadCredentialsException e) {
             System.out.println("Invalid Details..");
-            throw new Exception("Invalid username on password ?");
+            throw new ApiException("Invalid username on password ?");
         }
 
+    } */
+
+    //register new user api
+    @PostMapping("/register")
+    public ResponseEntity<UserDto> registerUser(@Valid @RequestBody UserDto userDto) {
+        UserDto registeredUser = this.userService.registerNewUser(userDto);
+        return new ResponseEntity<UserDto>(registeredUser,HttpStatus.CREATED);
     }
 
 }

@@ -1,4 +1,4 @@
-package com.codewithamit.blogappapis.security;
+/*package com.codewithamit.blogappapis.security;
 
 import java.io.IOException;
 
@@ -22,4 +22,4 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint{
     }
     
     
-}
+}*/

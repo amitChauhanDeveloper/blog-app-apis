@@ -6,6 +6,8 @@ import com.codewithamit.blogappapis.payloads.UserDto;
 
 public interface UserService {
 
+    //user register
+    UserDto registerNewUser (UserDto user);
     //create
     UserDto createUser(UserDto user);
 
