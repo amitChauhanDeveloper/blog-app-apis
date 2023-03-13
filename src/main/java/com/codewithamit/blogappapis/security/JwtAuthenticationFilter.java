@@ -1,4 +1,4 @@
-/*package com.codewithamit.blogappapis.security;
+/* package com.codewithamit.blogappapis.security;
 
 import java.io.IOException;
 
@@ -62,8 +62,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
             if (this.jwtTokenHelper.validateToken(token, userDetails)) {
-                // shi chal raha hai
-                // authentication
 
                 UsernamePasswordAuthenticationToken userNamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
                         userDetails, null, userDetails.getAuthorities());
@@ -80,4 +78,5 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     }
 
-}*/
+}
+ */

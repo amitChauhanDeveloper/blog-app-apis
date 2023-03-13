@@ -111,7 +111,7 @@ public class PostController {
         return new ResponseEntity<List<PostDto>>(result, HttpStatus.OK);
     }
 
-    /* // post image upload
+    // post image upload
     @PostMapping("/post/image/upload{postId}")
     public ResponseEntity<PostDto> uploadPostImage(
             @RequestParam("image") MultipartFile image,
@@ -133,9 +133,9 @@ public class PostController {
         InputStream resource = this.fileService.getResource(path, imageName);
         response.setContentType(MediaType.IMAGE_JPEG_VALUE);
         StreamUtils.copy(resource, response.getOutputStream());
-    } */
+    }
 
-    @PostMapping("/posts/image/upload/{postId}")
+    /* @PostMapping("/posts/image/upload/{postId}")
 	public ResponseEntity<PostDto> uploadPostImage(
 			@RequestParam("image") MultipartFile image,
 			@PathVariable Integer postId
@@ -147,6 +147,6 @@ public class PostController {
 		postDto.setImageName(fileName);
 		PostDto updatePost = this.postService.updatePost(postDto, postId);
 		return new ResponseEntity<PostDto>(updatePost,HttpStatus.OK);
-	}
+	} */
 
 }

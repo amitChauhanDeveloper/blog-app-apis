@@ -14,8 +14,12 @@ import com.codewithamit.blogappapis.config.AppConstants;
 import com.codewithamit.blogappapis.entities.Role;
 import com.codewithamit.blogappapis.repositories.RoleRepo;
 
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.info.Info;
+
 @SpringBootApplication
-public class BlogAppApisApplication implements CommandLineRunner{
+@OpenAPIDefinition(info = @Info(title = "Blogging Application : Backend APIS", version = "1.0", description = "Apis Information"))
+public class BlogAppApisApplication implements CommandLineRunner {
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
@@ -23,13 +27,12 @@ public class BlogAppApisApplication implements CommandLineRunner{
 	@Autowired
 	private RoleRepo roleRepo;
 
-
 	public static void main(String[] args) {
 		SpringApplication.run(BlogAppApisApplication.class, args);
 	}
 
 	@Bean
-	public ModelMapper modelMapper(){
+	public ModelMapper modelMapper() {
 		return new ModelMapper();
 	}
 
@@ -38,28 +41,28 @@ public class BlogAppApisApplication implements CommandLineRunner{
 		System.out.println(this.passwordEncoder.encode("amit1234"));
 
 		try {
-			
+
 			Role role = new Role();
 			role.setId(AppConstants.ADMIN_USER);
 			role.setName("ROLE_ADMIN");
-			
+
 			Role role1 = new Role();
 			role1.setId(AppConstants.NORMAL_USER);
 			role1.setName("ROLE_NORMAL");
-			
-			List<Role> roles = List.of(role,role1);
-			
+
+			List<Role> roles = List.of(role, role1);
+
 			List<Role> result = this.roleRepo.saveAll(roles);
-			
-			result.forEach(r->{
+
+			result.forEach(r -> {
 				System.out.println(r.getName());
 			});
-			
+
 		} catch (Exception e) {
-			
+
 			e.printStackTrace();
 		}
-		
+
 	}
 
 }

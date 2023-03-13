@@ -66,12 +66,4 @@ public class UserController {
         return ResponseEntity.ok(this.userService.getUserById(userId));
     }
 
-    /* //register new user api
-    @PostMapping("/register")
-    public ResponseEntity<UserDto> registerUser(@Valid @RequestBody UserDto userDto) {
-        UserDto registeredUser = this.userService.registerNewUser(userDto);
-        return new ResponseEntity<UserDto>(registeredUser,HttpStatus.CREATED);
-    } */
-
-
 }
