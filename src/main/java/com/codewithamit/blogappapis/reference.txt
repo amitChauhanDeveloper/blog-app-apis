@@ -1,0 +1,10 @@
+For reference
+
+Backend github & youtube link
+https://github.com/LearnCodeWithDurgesh/Backend-Course-Blogging-Application
+https://www.youtube.com/watch?v=I7BTYi5augU&list=PL0zysOflRCen-GihOcm1hZfYAlwr63K_M&index=1
+
+
+Frontend github & youtube link
+https://github.com/LearnCodeWithDurgesh/blog-app
+https://www.youtube.com/watch?v=yukmW5T_62I&list=PL0zysOflRCekAvE0nXWobPCgW0ets6s5o&index=1
