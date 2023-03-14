@@ -14,13 +14,10 @@ import com.codewithamit.blogappapis.config.AppConstants;
 import com.codewithamit.blogappapis.entities.Role;
 import com.codewithamit.blogappapis.repositories.RoleRepo;
 
-import io.swagger.v3.oas.annotations.OpenAPIDefinition;
-import io.swagger.v3.oas.annotations.info.Info;
+
 
 @SpringBootApplication
-@OpenAPIDefinition(info = @Info(title = "Blogging Application : Backend APIS", version = "1.0", description = "Apis Information"))
 public class BlogAppApisApplication implements CommandLineRunner {
-
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
@@ -38,6 +35,7 @@ public class BlogAppApisApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+
 		System.out.println(this.passwordEncoder.encode("amit1234"));
 
 		try {
@@ -59,7 +57,7 @@ public class BlogAppApisApplication implements CommandLineRunner {
 			});
 
 		} catch (Exception e) {
-
+			
 			e.printStackTrace();
 		}
 

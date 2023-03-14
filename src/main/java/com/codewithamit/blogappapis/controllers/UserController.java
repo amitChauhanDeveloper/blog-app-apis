@@ -19,10 +19,10 @@ import com.codewithamit.blogappapis.payloads.ApiResponse;
 import com.codewithamit.blogappapis.payloads.UserDto;
 import com.codewithamit.blogappapis.services.UserService;
 
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 
 @RestController
-@RequestMapping("api/users")
+@RequestMapping("api/v1/users")
 public class UserController {
 
     @Autowired

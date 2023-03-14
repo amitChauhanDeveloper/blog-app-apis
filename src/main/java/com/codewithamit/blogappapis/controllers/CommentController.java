@@ -15,10 +15,10 @@ import com.codewithamit.blogappapis.payloads.ApiResponse;
 import com.codewithamit.blogappapis.payloads.CommentDto;
 import com.codewithamit.blogappapis.services.CommentService;
 
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/api/")
+@RequestMapping("/api/v1/")
 public class CommentController {
 
     @Autowired
