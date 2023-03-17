@@ -6,7 +6,9 @@ public interface CommentService {
     
     //create comment
 
-    CommentDto createComment (CommentDto commentDto, Integer postId, Integer userId);
+    //CommentDto createComment (CommentDto commentDto, Integer postId, Integer userId);
+
+    CommentDto createComment (CommentDto commentDto, Integer postId);
 
     //update comment
     CommentDto updateComment(CommentDto commentDto,Integer commentId);

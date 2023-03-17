@@ -5,7 +5,6 @@ import java.io.InputStream;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -47,7 +46,7 @@ public class PostController {
     // create
     @PostMapping("/user/{userId}/category/{categoryId}/posts")
     public ResponseEntity<PostDto> createPost(
-            @Valid @RequestBody PostDto postDto,
+            @RequestBody PostDto postDto,
             @PathVariable Integer userId,
             @PathVariable Integer categoryId) {
         PostDto createPost = this.postService.createPost(postDto, userId, categoryId);
@@ -56,7 +55,7 @@ public class PostController {
 
     // update
     @PutMapping("/posts/{postId}")
-    public ResponseEntity<PostDto> updatePost(@Valid @RequestBody PostDto postDto,
+    public ResponseEntity<PostDto> updatePost(@RequestBody PostDto postDto,
             @PathVariable Integer postId) {
         PostDto updatedPost = this.postService.updatePost(postDto, postId);
         return ResponseEntity.ok(updatedPost);
@@ -73,7 +72,7 @@ public class PostController {
     // get by user post
     @GetMapping("/user/{userId}/posts")
     public ResponseEntity<List<PostDto>> getPostsByUser(
-            @Valid @PathVariable Integer userId) {
+            @PathVariable Integer userId) {
         List<PostDto> posts = this.postService.getPostsByUser(userId);
         return new ResponseEntity<List<PostDto>>(posts, HttpStatus.OK);
     }
@@ -81,7 +80,7 @@ public class PostController {
     // get by category
     @GetMapping("/category/{categoryId}/posts")
     public ResponseEntity<List<PostDto>> getPostsByCategory(
-            @Valid @PathVariable Integer categoryId) {
+            @PathVariable Integer categoryId) {
         List<PostDto> posts = this.postService.getPostsByCategory(categoryId);
         return new ResponseEntity<List<PostDto>>(posts, HttpStatus.OK);
     }
@@ -106,7 +105,7 @@ public class PostController {
     // search post
     @GetMapping("/posts/search/{keywords}")
     public ResponseEntity<List<PostDto>> searchPostByTitle(
-            @Valid @PathVariable("keywords") String keywords) {
+            @PathVariable("keywords") String keywords) {
         List<PostDto> result = this.postService.searchPosts(keywords);
         return new ResponseEntity<List<PostDto>>(result, HttpStatus.OK);
     }

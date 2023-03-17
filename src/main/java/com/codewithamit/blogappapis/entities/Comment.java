@@ -26,8 +26,8 @@ public class Comment {
     @ManyToOne
     private Post post; 
 
-    @ManyToOne
+    /* @ManyToOne
     private User user; 
- 
+  */
     
 }
