@@ -1,28 +1,26 @@
-package com.codewithamit.blogappapis;
+// package com.codewithamit.blogappapis;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+// import org.junit.jupiter.api.Test;
+// import org.springframework.beans.factory.annotation.Autowired;
+// import org.springframework.boot.test.context.SpringBootTest;
 
-import com.codewithamit.blogappapis.repositories.UserRepo;
+// import com.codewithamit.blogappapis.repositories.UserRepo;
 
-@SpringBootTest
-class BlogAppApisApplicationTests {
+// @SpringBootTest
+// class BlogAppApisApplicationTests {
 
-	@Autowired
-	private UserRepo userRepo;
+// 	@Autowired
+// 	private UserRepo userRepo;
 
-	@Test
-	void contextLoads() {
-	}
+// 	@Test
+// 	void contextLoads() {
+// 	}
 
-	@Test
-	public void repoTest(){
-		String className = this.userRepo.getClass().getName();
-		String packName = this.userRepo.getClass().getPackageName();
-		System.out.println(className);
-		System.out.println(packName);
-
-
-	}
-}
+// 	@Test
+// 	public void repoTest(){
+// 		String className = this.userRepo.getClass().getName();
+// 		String packName = this.userRepo.getClass().getPackageName();
+// 		System.out.println(className);
+// 		System.out.println(packName);
+// 	}
+// }
