@@ -16,6 +16,13 @@
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
+		 <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>11</java.version>
+		<maven.compiler.source>${java.version}</maven.compiler.source>
+		<maven.compiler.target>${java.version}</maven.compiler.target>
+		<org.projectlombok.version>1.18.24</org.projectlombok.version>
+		<maven.compiler.plugin>3.10.1</maven.compiler.plugin>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -37,16 +44,14 @@
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
-		<!-- <dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<scope>runtime</scope>
-		</dependency> -->
+
 		<dependency>
-			<groupId>com.mysql</groupId>
-			<artifactId>mysql-connector-j</artifactId>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.33</version>
 			<scope>runtime</scope>
-   		 </dependency>
+		</dependency>
+
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
@@ -75,12 +80,11 @@
 			<version>0.9.1</version>
 		</dependency>
 
-		<!-- <dependency>
-            <groupId>org.springdoc</groupId>
-            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-            <version>2.0.2</version>
-        </dependency> -->
-
+		    <dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-jooq</artifactId>
+   			 </dependency>
+          
 		<dependency>
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-boot-starter</artifactId>
@@ -91,28 +95,143 @@
 		<dependency>
 			<groupId>com.fasterxml.jackson.dataformat</groupId>
 			<artifactId>jackson-dataformat-xml</artifactId>
-
 		</dependency>
-		
-
 	</dependencies>
 
+<!-- <build>
+	<plugins>
+		<plugin>
+			 <groupId>org.jooq</groupId>
+			<artifactId>jooq-codegen-maven</artifactId>
+			
+				 <executions>
+  					  <execution>
+					  <id>generate-mysql</id>
+           			 <phase>generate-sources</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+				</execution>
+			</executions>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<excludes>
-						<exclude>
-							<groupId>org.projectlombok</groupId>
-							<artifactId>lombok</artifactId>
-						</exclude>
-					</excludes>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
+	<configuration>
+		<jdbc>
+			<driver>com.mysql.cj.jdbc.Driver</driver>
+			<url>jdbc:mysql://localhost:3306/blog-app-apis</url>
+			<user>root</user>
+			<password>admin</password>
+    </jdbc>
 
+			<generator>
+                <database>
+                  <name>org.jooq.meta.mysql.MySQLDatabase</name>
+                  <includes>.*</includes>
+                  <excludes></excludes>
+                  <inputSchema>blog-app-apis</inputSchema>
+                </database>
+                <generate>
+                  <pojos>true</pojos>
+                  <pojosEqualsAndHashCode>
+                    true
+                  </pojosEqualsAndHashCode>
+                  <javaTimeTypes>true</javaTimeTypes>
+                  <fluentSetters>true</fluentSetters>
+                </generate>
+                <target>
+                  <packageName>
+                    com.codewithamit.jooq
+                  </packageName>
+                  <directory>
+                    src/main/java
+                  </directory>
+                </target>
+              </generator>
+			</configuration>
+		</plugin>
+	</plugins>
+	</build> -->
 </project>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<!-- <build>
+		<plugins>
+			 <plugin>
+                    <groupId>org.jooq</groupId>
+                    <artifactId>jooq-codegen-maven</artifactId>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>generate</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                    <dependencies>
+                        <dependency>
+                            <groupId>mysql</groupId>
+                            <artifactId>mysql-connector-j</artifactId>
+                            <version>${mysql.version}</version>
+                        </dependency>
+                    </dependencies>
+            <configuration>
+              <jdbc>
+            <driver>com.mysql.cj.jdbc.Driver</driver>
+            <url>jdbc:mysql://${MYSQL_HOST:localhost}:3306/blog-app-apis</url>
+            <username>user</username>
+            <password>admin</password>
+            </jdbc>
+              <generator>
+                <database>
+                  <name>
+                     org.jooq.meta.mysql.MySQLDatabase
+                  </name>
+                  <includes>.*</includes>
+                  <excludes></excludes>
+                  <inputSchema>blog-app-apis</inputSchema>
+                </database>
+                <generate>
+                  <pojos>true</pojos>
+                  <pojosEqualsAndHashCode>
+                    true
+                  </pojosEqualsAndHashCode>
+                  <javaTimeTypes>true</javaTimeTypes>
+                  <fluentSetters>true</fluentSetters>
+                </generate>
+                <target>
+                  <packageName>
+                    com.codewithamit.jooq
+                  </packageName>
+                  <directory>
+                    src/main/java
+                  </directory>
+                </target>
+              </generator>
+            </configuration>
+      </plugin>
+		</plugins>
+	</build> -->
