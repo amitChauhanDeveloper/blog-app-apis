@@ -26,7 +26,7 @@ import com.codewithamit.blogappapis.repositories.UserRepo;
 import com.codewithamit.blogappapis.security.JwtTokenHelper;
 import com.codewithamit.blogappapis.services.UserService;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/v1/auth/")
