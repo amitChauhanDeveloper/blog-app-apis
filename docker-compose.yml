@@ -1,0 +1,13 @@
+version: '3.3'
+
+services:
+
+  blog_app_apis:
+    build:
+      context: ./blog-app-apis
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

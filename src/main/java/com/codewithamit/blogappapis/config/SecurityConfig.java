@@ -50,30 +50,30 @@ public class SecurityConfig {
                 "/swagger-resources/",
                 "/swagger-ui/",
                 "/webjars/"
-
         };
-
+    
         http.csrf()
                 .disable()
-                .authorizeHttpRequests()
-                .antMatchers(PUBLIC_URLS)
-                .permitAll()
-                .antMatchers(HttpMethod.GET)
-                .permitAll()
-                .anyRequest()
-                .authenticated()
-                .and().exceptionHandling()
-                .authenticationEntryPoint(this.jwtAuthenticationEntryPoint)
-                .and()
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-
+                .authorizeHttpRequests(authz -> authz
+                        .requestMatchers(PUBLIC_URLS)
+                        .permitAll()
+                        .requestMatchers(HttpMethod.GET)
+                        .permitAll()
+                        .anyRequest()
+                        .authenticated()
+                )
+                .exceptionHandling(exceptions -> exceptions
+                        .authenticationEntryPoint(this.jwtAuthenticationEntryPoint)
+                )
+                .sessionManagement(session -> session
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                );
+    
         http.addFilterBefore(this.jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
-
+    
         http.authenticationProvider(daoAuthenticationProvider());
-        DefaultSecurityFilterChain defaultSecurityFilterChain = http.build();
-
-        return defaultSecurityFilterChain;
+    
+        return http.build();
     }
 
     
