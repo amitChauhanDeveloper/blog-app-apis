@@ -75,9 +75,16 @@ public class AuthController {
 	// register new user api
 
 	@PostMapping("/register")
-	public ResponseEntity<UserDto> registerUser(@Valid @RequestBody UserDto userDto) {
+	public ResponseEntity<JwtAuthResponse> registerUser(@Valid @RequestBody UserDto userDto)throws Exception {
+
 		UserDto registeredUser = this.userService.registerNewUser(userDto);
-		return new ResponseEntity<UserDto>(registeredUser, HttpStatus.CREATED);
+		this.authenticate(registeredUser.getEmail(), userDto.getPassword());
+		UserDetails userDetails = this.userDetailsService.loadUserByUsername(registeredUser.getEmail());
+		String token = this.jwtTokenHelper.generateToken(userDetails);
+		JwtAuthResponse response = new JwtAuthResponse();
+		response.setToken(token);
+		response.setUser(this.mapper.map((User) userDetails, UserDto.class));
+		return new ResponseEntity<JwtAuthResponse>(response, HttpStatus.CREATED);
 	}
 
 	// get loggedin user data
