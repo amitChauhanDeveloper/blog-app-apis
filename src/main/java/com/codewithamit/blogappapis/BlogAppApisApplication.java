@@ -18,7 +18,7 @@ import com.codewithamit.blogappapis.repositories.RoleRepo;
 
 
 @SpringBootApplication
-@EnableScheduling
+// @EnableScheduling
 public class BlogAppApisApplication implements CommandLineRunner {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
